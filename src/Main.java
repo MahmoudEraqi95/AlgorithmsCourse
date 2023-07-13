@@ -4,6 +4,18 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        Graph graph = createGraph();
+        for (int i = 0; i < graph.vertices.size(); i++) {
+            System.out.print(graph.vertices.get(i).getKey()+"----->");
+            for (int j = 0;j<graph.vertices.get(i).edges.size();j++){
+                System.out.print("("+graph.vertices.get(i).edges.get(j).vertices.get(0).getKey()+",");
+                System.out.print(graph.vertices.get(i).edges.get(j).vertices.get(1).getKey()+")");
+            }
+            System.out.println();
+        }
+
+    }
+    public static Graph createGraph(){
 
         Vertex vertex1 = new Vertex(1);
         Vertex vertex2 = new Vertex(2);
@@ -33,28 +45,7 @@ public class Main {
         graph.insertEdge(edge25);
         graph.insertEdge(edge13);
         graph.insertEdge(edge46);
-        for (int i = 0; i < graph.vertices.size(); i++) {
-
-            System.out.print(graph.vertices.get(i).getKey()+"----->");
-            for (int j = 0;j<graph.vertices.get(i).edges.size();j++){
-                System.out.print("("+graph.vertices.get(i).edges.get(j).vertices.get(0).getKey()+",");
-                System.out.print(graph.vertices.get(i).edges.get(j).vertices.get(1).getKey()+")");
-            }
-            System.out.println();
-
-        }
-        System.out.println();
-        graph.removeVertx(vertex6);
         graph.removeEdge(edge12);
-        for (int i = 0; i < graph.vertices.size(); i++) {
-
-            System.out.print(graph.vertices.get(i).getKey()+"----->");
-            for (int j = 0;j<graph.vertices.get(i).edges.size();j++){
-                System.out.print("("+graph.vertices.get(i).edges.get(j).vertices.get(0).getKey()+",");
-                System.out.print(graph.vertices.get(i).edges.get(j).vertices.get(1).getKey()+")");
-            }
-            System.out.println();
-
-        }
+        return graph;
     }
 }
