@@ -1,12 +1,13 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
     List<Vertex> vertices;
     List<Edge> edges;
 
-    public Graph(List<Vertex> vertices, List<Edge> edges) {
-        this.vertices = vertices;
-        this.edges = edges;
+    public Graph() {
+        this.vertices = new ArrayList<>();
+        this.edges = new ArrayList<>();
     }
 
     public List<Edge> incidentEdges(Vertex v) {
@@ -43,15 +44,24 @@ public class Graph {
     }
 
     public boolean insertEdge(Edge o) {
+        for (int i = 0; i <o.vertices.size() ; i++) {
+           o.vertices.get(i).edges.add(o);
+        }
         return edges.add(o);
     }
 
     public boolean removeVertx(Vertex v) {
+       for (Edge e: v.edges){
+           opposite(v, e).edges.remove(e);
+       }
         return vertices.remove(v);
     }
 
-    public boolean removeEdge(Edge v) {
-        return edges.remove(v);
+    public boolean removeEdge(Edge e) {
+        for (Vertex v: e.vertices){
+            v.edges.remove(e);
+        }
+        return edges.remove(e);
     }
 
     public int numVertix() {
@@ -74,5 +84,11 @@ public class Graph {
        return v.edges.size();
     }
 
+    public List<Edge> getEdges() {
+        return edges;
+    }
 
+    public List<Vertex> getVertices() {
+        return vertices;
+    }
 }

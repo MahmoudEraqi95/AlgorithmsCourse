@@ -1,17 +1,60 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
+import java.util.List;
+
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Vertex vertex1 = new Vertex(1);
+        Vertex vertex2 = new Vertex(2);
+        Vertex vertex3 = new Vertex(3);
+        Vertex vertex4 = new Vertex(4);
+        Vertex vertex5 = new Vertex(5);
+        Vertex vertex6 = new Vertex(6);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+
+        Edge edge12 = new Edge(List.of(vertex1, vertex2));
+        Edge edge13 = new Edge(List.of(vertex1, vertex3));
+        Edge edge23 = new Edge(List.of(vertex2, vertex3));
+        Edge edge24= new Edge(List.of(vertex2, vertex4));
+        Edge edge25= new Edge(List.of(vertex2, vertex5));
+        Edge edge46= new Edge(List.of(vertex4, vertex6));
+
+        Graph graph = new Graph();
+        graph.insertVertex(vertex1);
+        graph.insertVertex(vertex2);
+        graph.insertVertex(vertex3);
+        graph.insertVertex(vertex4);
+        graph.insertVertex(vertex5);
+        graph.insertVertex(vertex6);
+        graph.insertEdge(edge12);
+        graph.insertEdge(edge23);
+        graph.insertEdge(edge24);
+        graph.insertEdge(edge25);
+        graph.insertEdge(edge13);
+        graph.insertEdge(edge46);
+        for (int i = 0; i < graph.vertices.size(); i++) {
+
+            System.out.print(graph.vertices.get(i).getKey()+"----->");
+            for (int j = 0;j<graph.vertices.get(i).edges.size();j++){
+                System.out.print("("+graph.vertices.get(i).edges.get(j).vertices.get(0).getKey()+",");
+                System.out.print(graph.vertices.get(i).edges.get(j).vertices.get(1).getKey()+")");
+            }
+            System.out.println();
+
+        }
+        System.out.println();
+        graph.removeVertx(vertex6);
+        graph.removeEdge(edge12);
+        for (int i = 0; i < graph.vertices.size(); i++) {
+
+            System.out.print(graph.vertices.get(i).getKey()+"----->");
+            for (int j = 0;j<graph.vertices.get(i).edges.size();j++){
+                System.out.print("("+graph.vertices.get(i).edges.get(j).vertices.get(0).getKey()+",");
+                System.out.print(graph.vertices.get(i).edges.get(j).vertices.get(1).getKey()+")");
+            }
+            System.out.println();
+
         }
     }
 }
